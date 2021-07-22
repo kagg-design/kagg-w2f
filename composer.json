@@ -1,0 +1,33 @@
+{
+  "name": "kagg-design/kagg-w2f",
+  "description": "KAGG Wordfence to Fail2ban",
+  "license": "GPL-2.0",
+  "keywords": [
+    "wordfence",
+    "fail2ban"
+  ],
+  "homepage": "https://kagg.eu/en/",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "KAGG Design",
+      "email": "info@kagg.eu",
+      "homepage": "https://kagg.eu/en/"
+    }
+  ],
+  "support": {
+    "issues": "https://wordpress.org/support/plugin/kagg-w2f"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "platform": {
+      "php": "5.6"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "KAGG\\W2F\\": "src/php"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.idea/
+vendor/
+
+*.lock
+.DS_Store
+.phpcs.cache
+Thumbs.db
