@@ -47,7 +47,7 @@ class Main {
 	 */
 	public function activate_ban(): void {
 		if ( ! wp_next_scheduled( self::UPDATE_BAN_HOOK ) ) {
-			wp_schedule_event( time(), 'daily', self::UPDATE_BAN_HOOK );
+			wp_schedule_event( time(), 'hourly', self::UPDATE_BAN_HOOK );
 			do_action( self::UPDATE_BAN_HOOK );
 		}
 	}
