@@ -164,8 +164,14 @@ map $real_ip $allow {
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
 		file_put_contents( self::NGINX_CONF, $config );
 
-		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_exec
-		exec( 'sudo systemctl restart nginx' );
+		// phpcs:disable WordPress.PHP.DiscouragedPHPFunctions.system_calls_exec
+		$output = null;
+		exec( 'sudo nginx -t', $output, $result );
+
+		if ( $result ) {
+			exec( 'sudo systemctl restart nginx' );
+		}
+		// phpcs:enable WordPress.PHP.DiscouragedPHPFunctions.system_calls_exec
 	}
 
 	/**
