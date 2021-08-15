@@ -34,6 +34,10 @@ class Main {
 	 * Init class.
 	 */
 	public function init(): void {
+		if ( 'Linux' !== PHP_OS_FAMILY ) {
+			return;
+		}
+
 		// Register activation hook to schedule event in wp_cron().
 		register_activation_hook( KAGG_W2F_FILE, [ $this, 'activate_ban' ] );
 
@@ -113,6 +117,10 @@ class Main {
 	 */
 	public function update_nginx( array $blocked_ips ): void {
 		$nginx_blocked_ips = [];
+
+		if ( ! is_file( self::NGINX_CONF ) ) {
+			return;
+		}
 
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$config                  = (string) file_get_contents( self::NGINX_CONF );
