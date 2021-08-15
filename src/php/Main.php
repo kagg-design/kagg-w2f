@@ -34,15 +34,15 @@ class Main {
 	 * Init class.
 	 */
 	public function init(): void {
+		// Register deactivation hook to remove event from wp_cron().
+		register_deactivation_hook( KAGG_W2F_FILE, [ $this, 'deactivate_ban' ] );
+
 		if ( 'Linux' !== PHP_OS_FAMILY ) {
 			return;
 		}
 
 		// Register activation hook to schedule event in wp_cron().
 		register_activation_hook( KAGG_W2F_FILE, [ $this, 'activate_ban' ] );
-
-		// Register deactivation hook to remove event from wp_cron().
-		register_deactivation_hook( KAGG_W2F_FILE, [ $this, 'deactivate_ban' ] );
 
 		add_action( self::UPDATE_BAN_HOOK, [ $this, 'update_ban_action' ] );
 	}
